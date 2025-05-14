@@ -1,5 +1,7 @@
 import  helper_classes.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class App extends  JFrame{
@@ -19,8 +21,15 @@ public class App extends  JFrame{
     buttonEasy.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 22));
     buttonEasy.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
     buttonEasy.setFocusPainted(false);
-    
-    buttonEasy.addActionListener(e -> System.out.println("selam"));
+
+    EasyModeWindow easyWindow = new EasyModeWindow();
+    buttonEasy.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        easyWindow.showWindow();
+        frame.setVisible(false);
+    }
+   });
      OnClickEventHelper.setOnClickColor(buttonEasy, Color.decode("#232323"), Color.decode("#2e2e2e"));
      panel.add(buttonEasy);
 
@@ -31,6 +40,15 @@ public class App extends  JFrame{
     buttonHard.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 22));
     buttonHard.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
     buttonHard.setFocusPainted(false);
+    
+    HardModeWindow hardModeWindow = new HardModeWindow();
+    buttonHard.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        hardModeWindow.showWindow();
+        frame.setVisible(false);
+    }
+   });
      OnClickEventHelper.setOnClickColor(buttonHard, Color.decode("#232323"), Color.decode("#2e2e2e"));
      panel.add(buttonHard);
 
@@ -42,7 +60,6 @@ public class App extends  JFrame{
 
      frame.add(panel);
      frame.setVisible(true);
-
   }
         
 }
